@@ -9,10 +9,8 @@
 let baseUrl = '';
 
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://192.168.1.220/';            //  本地ip
-  // baseUrl = 'http://39.108.76.246:80/';
+  // baseUrl = 'http://192.168.1.220/';                    //本地ip
 } else if (process.env.NODE_ENV === 'production') {
-  baseUrl = 'http://39.108.76.246:80/';
 }
 export {
   baseUrl

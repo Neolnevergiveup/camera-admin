@@ -2,20 +2,38 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
-// const setting = r => require.ensure([], () => r(require('../view/setting/setting.vue')), 'setting')
 const Login = r => require.ensure([], () => (require('./../page/admin/login.vue')), 'admin');
 const Index = r => require.ensure([], () => (require('./../page/index.vue')), 'admin');
+const Farm = r => require.ensure([], () => (require('./../page/farm/farm.vue')), 'camera');
+const Aquatic = r => require.ensure([], () => (require('./../page/aquatic/Aquatic.vue')), 'camera');
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
+    { path: '/', redirect: '/farm' },
     {
       path: '/login',
       component: Login
     },
     {
-      path: '/index',
-      component: Index
+      path: '/',
+      component: Index,
+      children: [
+        {
+          path: 'farm',
+          component: Farm
+        },
+        {
+          path: 'aquatic',
+          component: Aquatic
+        }
+      ]
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  next();
+});
+
+export default router;
